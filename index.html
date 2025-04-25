@@ -22,10 +22,10 @@
             <div class="user-amout-container">
                 <h3>Expenses</h3>
                 <p class="hide-error" id="product-tittle-error">
-                    value can't be empty or negative
+                    value can't be empty
                 </p>
                 <input type="text" class="product-tittle" id="product-tittle" placeholder="Enter title of the Product">
-                <!-- <p class="hide" id="product-cost-error"> -->
+                <p class="hide-error" id="product-cost-error">value can't be empty or Negative</p>
                 <input type="number" id="user-amount" placeholder="Enter the cost of the Product">
                 <button class="submit" id="check-amount">Check Amount</button>
             </div>
@@ -48,8 +48,11 @@
         </div>
         <div class="list">
             <h3>Expences List</h3>
+            <div id="expense-list"></div>
         </div>
         <!-- List -->
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
