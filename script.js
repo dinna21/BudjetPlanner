@@ -20,7 +20,7 @@ const ExpenditurDisplay = document.getElementById("Expenditure Value");
 
 const BalancedDisplay = document.getElementById("Balance");
 
-const expenselist = document.getElementById("list");
+const expenselist = document.getElementById("expense-list");
 // ---------------------------------------------------------------
 
 //Variables 
@@ -84,10 +84,11 @@ CheckAmountButton.addEventListener('click',()=>{
     console.log('Expenses array after addition:', expences);
     AmountTitleInput.value = "";
     UserAmountInput.value = "";
-})
+});
 
 
 //Function for update Expence
+function updateExpenses(){
 expenselist.innerHTML = "";
 expenceAmount = 0;
 
@@ -104,8 +105,32 @@ expences.forEach(expense=>{
             </div>
     `
     expenselist.appendChild(expenseElement);
-})
-
-
+});
+document.querySelectorAll('.delete').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const id = parseInt(e.target.getAttribute('data-id'));
+        expences = expences.filter(expense => expense.id !== id);
+        updateExpenses();
+        updateSummary();
+    });
+});
+document.querySelectorAll('.edit').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const id = parseInt(e.target.getAttribute('data-id'));
+        const expense = expences.find(expense => expense.id === id);
+        
+        if (expense) {
+            AmountTitleInput.value = expense.title;
+            UserAmountInput.value = expense.amount;
+            
+            // Change button text and functionality
+            CheckAmountButton.textContent = "Update Expense";
+            CheckAmountButton.onclick = function() {
+                updateExpenses(id);
+            };
+        }
+    });
+});
+}
 
 
